@@ -3,6 +3,9 @@ import { ResultCard } from "./ResultCard";
 
 export const Add = ({ searchValue, setSearchValue, movies }) => {
 
+
+    // Handle input change and update search value
+
   const onChange = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);

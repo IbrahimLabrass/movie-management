@@ -9,15 +9,17 @@ import "./lib/font-awesome/css/all.min.css";
 import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
+  // State for storing movies and search value
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
+  // Function to fetch movies from OMDB API based on search value
   const getMovieRequest = async (searchValue) => {
     const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=a59a20fe`;
-
     const response = await fetch(url);
     const responseJson = await response.json();
-
+    
+    // Update state with fetched movies
     if (responseJson.Search) {
       setMovies(responseJson.Search);
     } else {
@@ -25,6 +27,7 @@ function App() {
     }
   };
 
+  // Use effect to fetch movies when search value changes
   useEffect(() => {
     if (searchValue) {
       getMovieRequest(searchValue);
